@@ -88,12 +88,15 @@ class GSSettingsDlg : public GSDialog
 
 	std::vector<GSSetting> m_renderers;
 	std::vector<Adapter> m_d3d11_adapters;
+	std::vector<Adapter> m_vulkan_adapters;
 	std::vector<Adapter> *m_current_adapters;
-	std::string m_last_selected_adapter_id;
+	std::string m_last_selected_dx_adapter_id;
+	std::string m_last_selected_vk_adapter_id;
 
 	std::vector<GSSetting> m_ocl_devs;
 
 	std::vector<Adapter> EnumerateD3D11Adapters();
+    std::vector<Adapter> EnumerateVulkanAdapters();
 
 	void UpdateAdapters();
 	void UpdateControls();

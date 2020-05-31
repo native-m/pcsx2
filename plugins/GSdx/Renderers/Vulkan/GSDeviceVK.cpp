@@ -29,92 +29,92 @@ GSDeviceVK::GSDeviceVK()
 
 bool GSDeviceVK::Create(const std::shared_ptr<GSWnd> &wnd)
 {
-    if (!GSDevice::Create(wnd))
-        return false;
+	if (!GSDevice::Create(wnd))
+		return false;
 
-    VkApplicationInfo appInfo = {};
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pApplicationName = "GSdxVulkan";
-    appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.pEngineName = "GSdxVulkanEngine";
-    appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.apiVersion = VK_API_VERSION_1_0;
+	VkApplicationInfo app_info = {};
+	app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+	app_info.pApplicationName = "GSdxVulkan";
+	app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
+	app_info.pEngineName = "GSdxVulkanEngine";
+	app_info.engineVersion = VK_MAKE_VERSION(1, 0, 0);
+	app_info.apiVersion = VK_API_VERSION_1_0;
 
-    // Retrieve the number of instance extensions
-    uint32 extCount = 0;
-    vkEnumerateInstanceExtensionProperties(NULL, &extCount, NULL);
+	// Retrieve the number of instance extensions
+	uint32 ext_count = 0;
+    vkEnumerateInstanceExtensionProperties(NULL, &ext_count, NULL);
 
-    // Retrieve instance extensions
-    std::vector<VkExtensionProperties> exts(extCount);
-    vkEnumerateInstanceExtensionProperties(NULL, &extCount, exts.data());
+	// Retrieve instance extensions
+    std::vector<VkExtensionProperties> exts(ext_count);
+    vkEnumerateInstanceExtensionProperties(NULL, &ext_count, exts.data());
 
-    std::vector<const char *> extNames;
-    for (const VkExtensionProperties &ext : exts) {
-        extNames.push_back(ext.extensionName);
-    }
+	std::vector<const char *> ext_names;
+	for (const VkExtensionProperties &ext : exts) {
+        ext_names.push_back(ext.extensionName);
+	}
 
-	std::vector<const char *> layerNames;
-    VkInstanceCreateInfo instanceInfo = { };
+	std::vector<const char *> layer_names;
+	VkInstanceCreateInfo instance_info = { };
 
-    // enable layers, if needed
-    // usually used for debugging
-    if (g_enable_layers) {
-        uint32 layerCount = 0;
-        vkEnumerateInstanceLayerProperties(&layerCount, NULL);
+	// enable layers, if needed
+	// usually used for debugging
+	if (g_enable_layers) {
+		uint32 layer_count = 0;
+        vkEnumerateInstanceLayerProperties(&layer_count, NULL);
 
-        std::vector<VkLayerProperties> availableLayers(layerCount);
-        vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+		std::vector<VkLayerProperties> available_layers(layer_count);
+        vkEnumerateInstanceLayerProperties(&layer_count, available_layers.data());
 
-        for (auto layer : g_vk_layers) {
-            for (auto availableLayer : availableLayers) {
-                if (std::strncmp(availableLayer.layerName,
-                                 layer,
-                                 std::strlen(layer)) == 0) {
-                    layerNames.push_back(layer);
-                    break;
-                }
-            }
-        }
-    }
+		for (auto layer : g_vk_layers) {
+			for (auto available_layer : available_layers) {
+                if (std::strncmp(available_layer.layerName,
+								 layer,
+								 std::strlen(layer)) == 0) {
+                    layer_names.push_back(layer);
+					break;
+				}
+			}
+		}
+	}
 
-    // Create vulkan instance
-    instanceInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-    instanceInfo.pApplicationInfo = &appInfo;
-    instanceInfo.enabledExtensionCount = extCount;
-    instanceInfo.ppEnabledExtensionNames = extNames.data();
-    instanceInfo.enabledLayerCount = layerNames.size();
-    instanceInfo.ppEnabledLayerNames = layerNames.data();
+	// Create vulkan instance
+	instance_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+	instance_info.pApplicationInfo = &app_info;
+	instance_info.enabledExtensionCount = ext_count;
+	instance_info.ppEnabledExtensionNames = ext_names.data();
+    instance_info.enabledLayerCount = layer_names.size();
+	instance_info.ppEnabledLayerNames = layer_names.data();
 
-    VkResult ret = vkCreateInstance(&instanceInfo, NULL, &m_vk_instance);
+	VkResult ret = vkCreateInstance(&instance_info, NULL, &m_vk_instance);
 
-    if (ret != VK_SUCCESS) {
-        return false;
-    }
+	if (ret != VK_SUCCESS) {
+		return false;
+	}
 
-    Reset(1, 1);
+	Reset(1, 1);
 
-    return true;
+	return true;
 }
 
 bool GSDeviceVK::Reset(int w, int h)
 {
-    if (!GSDevice::Reset(w, h))
-        return false;
+	if (!GSDevice::Reset(w, h))
+		return false;
 
-    return true;
+	return true;
 }
 
 void GSDeviceVK::Destroy()
 {
-    vkDestroyInstance(m_vk_instance, NULL);
+	vkDestroyInstance(m_vk_instance, NULL);
 }
 
 GSTexture *GSDeviceVK::CreateSurface(int type, int w, int h, int format)
 {
-    return new GSTextureVK(type, w, h, format);
+	return new GSTextureVK(type, w, h, format);
 }
 
 const char *GSDeviceVK::g_vk_layers[2] = {
 //    "VK_LAYER_RENDERDOC_Capture",
-    "VK_LAYER_KHRONOS_validation"
+	"VK_LAYER_KHRONOS_validation"
 };

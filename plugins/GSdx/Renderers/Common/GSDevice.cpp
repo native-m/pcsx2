@@ -420,6 +420,13 @@ GSAdapter::GSAdapter(const DXGI_ADAPTER_DESC1 &desc_dxgi)
 {
 }
 #endif
+GSAdapter::GSAdapter(uint32 vendor_id, uint32 device_id, uint32 subsys_id, uint32 rev_id)
+    : vendor(vendor_id)
+    , device(device_id)
+    , subsys(subsys_id)
+    , rev(rev_id)
+{
+}
 #ifdef __linux__
 // TODO
 #endif

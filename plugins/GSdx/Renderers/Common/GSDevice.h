@@ -272,6 +272,7 @@ struct GSAdapter
 #ifdef _WIN32
 	GSAdapter(const DXGI_ADAPTER_DESC1 &desc_dxgi);
 #endif
+    GSAdapter(uint32 vendor_id, uint32 device_id, uint32 subsys_id, uint32 rev_id);
 #ifdef __linux__
 	// TODO
 #endif

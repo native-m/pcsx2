@@ -19,6 +19,9 @@
     <Filter Include="Xbyak">
       <UniqueIdentifier>{d6fcc23b-bc82-4390-8a9a-928910bc4123}</UniqueIdentifier>
     </Filter>
+    <Filter Include="VulkanMemoryAllocator">
+      <UniqueIdentifier>{5ee0c749-ed8b-492a-a41d-15ef54bfd6eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GS.cpp">
@@ -238,6 +241,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Window\GSSettingsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\GSWndVK.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\Vulkan\GSDeviceVK.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\Vulkan\GSRendererVK.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\Vulkan\GSTextureVK.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -478,6 +493,21 @@
     </ClInclude>
     <ClInclude Include="Renderers\Common\GSFastList.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\GSWndVK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\Vulkan\GSDeviceVK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\Vulkan\GSTextureVK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\Vulkan\GSRendererVK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanMemoryAllocator\vk_mem_alloc.h">
+      <Filter>VulkanMemoryAllocator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

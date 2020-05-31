@@ -30,4 +30,16 @@
     <gresource prefix="/GSdx/res/">
         <file>tfx.cl</file>
     </gresource>
+    <gresource prefix="/GSdx/res/">
+        <file>vulkan/convert_vk.glsl</file>
+    </gresource>
+    <gresource prefix="/GSdx/res/">
+        <file>vulkan/tfx_vk.fs</file>
+    </gresource>
+    <gresource prefix="/GSdx/res/">
+        <file>vulkan/tfx_vk.gs</file>
+    </gresource>
+    <gresource prefix="/GSdx/res/">
+        <file>vulkan/tfx_vk.vs</file>
+    </gresource>
 </gresources>

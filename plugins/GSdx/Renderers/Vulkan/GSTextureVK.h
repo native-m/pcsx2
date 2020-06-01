@@ -21,21 +21,24 @@
 
 #pragma once
 
+#define VK_USE_PLATFORM_WIN32_KHR
+#include <vulkan/vulkan.h>
+
 #include "Renderers/Common/GSTexture.h"
 
 class GSTextureVK : public GSTexture
 {
-	struct {int type, w, h, format;} m_desc;
+	//struct {int type, w, h, format;} m_desc;
 
 public:
-	GSTextureVK();
+    GSTextureVK(VkImage image, int type, int w, int h, int format);
 	GSTextureVK(int type, int w, int h, int format);
-
-	int GetType() const {return m_desc.type;}
-	int GetFormat() const {return m_desc.format;}
 
 	bool Update(const GSVector4i& r, const void* data, int pitch, int layer = 0) {return true;}
 	bool Map(GSMap& m, const GSVector4i* r = NULL, int layer = 0) {return false;}
 	void Unmap() {}
 	bool Save(const std::string& fn) {return false;}
+
+private:
+    VkImage m_image;
 };

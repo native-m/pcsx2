@@ -22,15 +22,20 @@
 #include "stdafx.h"
 #include "GSTextureVK.h"
 
-GSTextureVK::GSTextureVK()
+GSTextureVK::GSTextureVK(VkImage image, int type, int w, int h, int format)
+    : m_image(image)
 {
-	memset(&m_desc, 0, sizeof(m_desc));
+    m_type = type;
+    m_size.x = w;
+    m_size.y = h;
+    m_format = format;
 }
 
 GSTextureVK::GSTextureVK(int type, int w, int h, int format)
+    : m_image(VK_NULL_HANDLE)
 {
-	m_desc.type = type;
-	m_desc.w = w;
-	m_desc.h = h;
-	m_desc.format = format;
+    m_type = type;
+    m_size.x = w;
+    m_size.y = h;
+    m_format = format;
 }

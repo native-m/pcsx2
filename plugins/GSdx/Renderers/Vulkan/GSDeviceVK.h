@@ -21,6 +21,7 @@
 
 #pragma once
 
+#define VK_USE_PLATFORM_WIN32_KHR
 #include <vulkan/vulkan.h>
 
 #include "Renderers/Common/GSDevice.h"
@@ -35,6 +36,14 @@ private:
     void DoInterlace(GSTexture *sTex, GSTexture *dTex, int shader, bool linear, float yoffset = 0) {}
     uint16 ConvertBlendEnum(uint16 generic) { return 0xFFFF; }
 
+	struct QueueFamilies
+    {
+        uint32 graphics_fam;
+        uint32 present_fam;
+        bool has_graphics;
+        bool has_present;
+    };
+
 public:
     GSDeviceVK();
     virtual ~GSDeviceVK() {}
@@ -43,15 +52,31 @@ public:
     bool Reset(int w, int h);
 
 private:
-    void Destroy();
+    VkPhysicalDevice FindSuitableDevice(const std::vector<VkPhysicalDevice>& devices);
+    QueueFamilies QueryQueueFamily(VkPhysicalDevice device, VkSurfaceKHR surface);
+    void CreateSurface(const std::shared_ptr<GSWnd> &wnd);
+    void CreateSwapchain(int w, int h);
+    void DestroySwapchain();
+	void Destroy();
 
-    VkInstance m_vk_instance;
-
+    QueueFamilies m_queue_fams;
+	VkInstance m_vk_instance;
+	VkPhysicalDevice m_vk_physical_device;
+    VkDevice m_vk_device;
+    VkQueue m_vk_graphics_queue;
+    VkQueue m_vk_present_queue;
+    VkSurfaceKHR m_surface;
+    VkSwapchainKHR m_swapchain;
+    std::vector<VkImage> m_swapchain_images;
+    std::vector<VkImageView> m_swapchain_image_views;
+	VkFormat m_swapchain_fmt;
+	VkExtent2D m_swapchain_extent;
+	
 #ifdef _DEBUG
     static const bool g_enable_layers = true;
 #else
     static const bool g_enable_layers = false;
 #endif
 
-    static const char *g_vk_layers[2];
+    static const char *g_vk_layers[1];
 };

@@ -255,6 +255,9 @@
     <ClCompile Include="Renderers\Vulkan\GSTextureVK.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Renderers\Vulkan\GSSpirVShaderCompiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderers\OpenGL\GLLoader.h">
@@ -508,6 +511,9 @@
     </ClInclude>
     <ClInclude Include="VulkanMemoryAllocator\vk_mem_alloc.h">
       <Filter>VulkanMemoryAllocator</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\Vulkan\GSSpirVShaderCompiler.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

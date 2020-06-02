@@ -112,19 +112,55 @@
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)vtune\x64;$(VULKAN_SDK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release AVX2|x64'">$(ProjectDir)vtune\x64;$(VULKAN_SDK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release SSE4|x64'">$(ProjectDir)vtune\x64;$(VULKAN_SDK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug AVX2|x64'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug SSE4|x64'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release AVX2|x64'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release SSE4|x64'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug AVX2|Win32'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug SSE4|Win32'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release AVX2|Win32'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release SSE4|Win32'">vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug AVX2|x64'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug SSE4|x64'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release AVX2|x64'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release SSE4|x64'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug AVX2|Win32'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug SSE4|Win32'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release AVX2|Win32'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release SSE4|Win32'">vulkan-1.lib;shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy /y "$(VULKAN_SDK)\Bin\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug AVX2|x64'">copy /y "$(VULKAN_SDK)\Bin\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug SSE4|x64'">copy /y "$(VULKAN_SDK)\Bin\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy /y "$(VULKAN_SDK)\Bin\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release AVX2|x64'">copy /y "$(VULKAN_SDK)\Bin\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release SSE4|x64'">copy /y "$(VULKAN_SDK)\Bin\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy /y "$(VULKAN_SDK)\Bin32\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug AVX2|Win32'">copy /y "$(VULKAN_SDK)\Bin32\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug SSE4|Win32'">copy /y "$(VULKAN_SDK)\Bin32\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy /y "$(VULKAN_SDK)\Bin32\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release AVX2|Win32'">copy /y "$(VULKAN_SDK)\Bin32\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release SSE4|Win32'">copy /y "$(VULKAN_SDK)\Bin32\shaderc_shared.dll" "$(SolutionDir)\bin"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Renderers\OpenGL\GLLoader.cpp" />
@@ -135,6 +171,7 @@
     <ClCompile Include="GSCapture.cpp" />
     <ClCompile Include="Renderers\Vulkan\GSDeviceVK.cpp" />
     <ClCompile Include="Renderers\Vulkan\GSRendererVK.cpp" />
+    <ClCompile Include="Renderers\Vulkan\GSSpirVShaderCompiler.cpp" />
     <ClCompile Include="Renderers\Vulkan\GSTextureVK.cpp" />
     <ClCompile Include="Window\GSCaptureDlg.cpp" />
     <ClCompile Include="GSClut.cpp" />
@@ -217,6 +254,7 @@
     <ClInclude Include="GSCapture.h" />
     <ClInclude Include="Renderers\Vulkan\GSDeviceVK.h" />
     <ClInclude Include="Renderers\Vulkan\GSRendererVK.h" />
+    <ClInclude Include="Renderers\Vulkan\GSSpirVShaderCompiler.h" />
     <ClInclude Include="Renderers\Vulkan\GSTextureVK.h" />
     <ClInclude Include="VulkanMemoryAllocator\vk_mem_alloc.h" />
     <ClInclude Include="Window\GSCaptureDlg.h" />

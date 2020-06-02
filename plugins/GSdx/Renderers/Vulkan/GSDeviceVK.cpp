@@ -21,6 +21,7 @@
 
 #include "stdafx.h"
 #include "GSDeviceVK.h"
+#include "GSSpirVShaderCompiler.h"
 #include "VulkanMemoryAllocator\vk_mem_alloc.h"
 
 GSDeviceVK::GSDeviceVK()
@@ -98,6 +99,8 @@ bool GSDeviceVK::Create(const std::shared_ptr<GSWnd> &wnd)
         return false;
     }
 
+    CreateSurface(wnd);
+
     // Retrieve all devices
     uint32 num_devices;
     vkEnumeratePhysicalDevices(m_vk_instance, &num_devices, nullptr);
@@ -124,8 +127,6 @@ bool GSDeviceVK::Create(const std::shared_ptr<GSWnd> &wnd)
             }
         }
     }
-
-    CreateSurface(wnd);
 
     m_queue_fams = QueryQueueFamily(m_vk_physical_device, m_surface);
     ASSERT(m_queue_fams.has_graphics == true && m_queue_fams.has_present == true);
@@ -174,6 +175,8 @@ bool GSDeviceVK::Create(const std::shared_ptr<GSWnd> &wnd)
     vkGetDeviceQueue(m_vk_device, m_queue_fams.graphics_fam, 0, &m_vk_graphics_queue);
     vkGetDeviceQueue(m_vk_device, m_queue_fams.present_fam, 0, &m_vk_present_queue);
 
+	GSSpirVShaderCompiler::TestCompiler();
+
 	CreateSwapchain(1, 1);
 
     // Phew..
@@ -203,6 +206,7 @@ VkPhysicalDevice GSDeviceVK::FindSuitableDevice(const std::vector<VkPhysicalDevi
 {
     std::multimap<int64_t, VkPhysicalDevice> device_candidates;
 
+	// We will take a device with highest score
     for (const auto &device : devices) {
         VkPhysicalDeviceProperties device_properties = {};
         VkPhysicalDeviceMemoryProperties device_memory = {};
